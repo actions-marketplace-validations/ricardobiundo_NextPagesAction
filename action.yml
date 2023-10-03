@@ -39,7 +39,7 @@ runs:
       - name: Build Vue
         run: |
               if [ true ==  ${{ inputs.useyarn }} ]; then yarn install --frozen-lockfile; else npm ci; fi
-              if [ true ==  ${{ inputs.useyarn }} ]; then yarn build && yarn export; else npm run build; fi
+              if [ true ==  ${{ inputs.useyarn }} ]; then yarn build && yarn export && touch ./out/.nojekyll; else npm run build; fi
               cd out
               if [ "none" !=  ${{ inputs.cname }} ]; then echo '${{ inputs.cname }}' > CNAME; fi
               git config --global user.email "${{ inputs.gitemail }}"
